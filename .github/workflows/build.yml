@@ -63,7 +63,7 @@ jobs:
         # tar -xzf tailscale.tar.gz -C tailscale --strip-components=1
         git clone --depth=1 https://github.com/KyuubiRan/Magisk-Tailscaled.git tailscale
         ls -la tailscale
-        rm tailscale.tar.gz
+        # rm tailscale.tar.gz
         cd ..
 
     - name: Build Tailscale for Android
