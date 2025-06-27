@@ -78,7 +78,9 @@ jobs:
       run: |
         mkdir -p dist/arm64
         mkdir -p dist/arm
-        cd build/tailscale/tailscale
+        ls -la
+        cd build/tailscale
+        ls -la
 
         # Patching etc/resolv.conf to readable dir
         sed -i 's|/etc/resolv.conf|/data/adb/tailscale/tmp/resolv.conf|g' net/dns/resolvconfpath_default.go
