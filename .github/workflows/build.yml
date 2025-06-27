@@ -57,10 +57,11 @@ jobs:
       run: |
         mkdir -p build
         cd build
-        latestTarballurl="${{ fromJSON(steps.get_stable_release.outputs.data).tarball_url }}"
-        mkdir -p tailscale
-        curl -L $latestTarballurl -o tailscale.tar.gz
-        tar -xzf tailscale.tar.gz -C tailscale --strip-components=1
+        # latestTarballurl="${{ fromJSON(steps.get_stable_release.outputs.data).tarball_url }}"
+        # mkdir -p tailscale
+        # curl -L $latestTarballurl -o tailscale.tar.gz
+        # tar -xzf tailscale.tar.gz -C tailscale --strip-components=1
+        git clone --depth=1 https://github.com/KyuubiRan/Magisk-Tailscaled.git tailscale
         ls -la tailscale
         rm tailscale.tar.gz
         cd ..
