@@ -31,10 +31,10 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
-    - name: Setup Go 1.22.x
+    - name: Setup Go 1.24.x
       uses: actions/setup-go@v5
       with:
-        go-version: '1.22.x'
+        go-version: '1.24.x'
     
     - name: Display Go version
       run: go version
@@ -61,10 +61,18 @@ jobs:
         # mkdir -p tailscale
         # curl -L $latestTarballurl -o tailscale.tar.gz
         # tar -xzf tailscale.tar.gz -C tailscale --strip-components=1
-        git clone --depth=1 https://github.com/KyuubiRan/Magisk-Tailscaled.git tailscale
+        if [ -d tailscale/.git ]; then
+          echo "Repo exists, pulling latest changes..."
+          cd tailscale
+          git pull
+          cd ..
+        else
+          echo "Cloning repo..."
+          git clone --depth=1 https://github.com/KyuubiRan/Magisk-Tailscaled.git tailscale
+        fi
         ls -la tailscale
         # rm tailscale.tar.gz
-        cd ..
+        # cd ..
 
     - name: Build Tailscale for Android
       run: |
