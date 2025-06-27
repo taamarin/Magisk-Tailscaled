@@ -65,14 +65,14 @@ jobs:
           echo "Repo exists, pulling latest changes..."
           cd tailscale
           git pull
-          cd ..
         else
           echo "Cloning repo..."
-          git clone --depth=1 https://github.com/KyuubiRan/Magisk-Tailscaled.git tailscale
+          git clone https://github.com/KyuubiRan/Magisk-Tailscaled.git tailscale
+          cd tailscale
         fi
-        ls -la tailscale
+        ls -la
         # rm tailscale.tar.gz
-        # cd ..
+        cd ..
 
     - name: Build Tailscale for Android
       run: |
