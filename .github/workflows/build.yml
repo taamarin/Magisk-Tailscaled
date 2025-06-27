@@ -61,16 +61,9 @@ jobs:
         # mkdir -p tailscale
         # curl -L $latestTarballurl -o tailscale.tar.gz
         # tar -xzf tailscale.tar.gz -C tailscale --strip-components=1
-        if [ -d tailscale/.git ]; then
-          echo "Repo exists, pulling latest changes..."
-          cd tailscale
-          git pull
-        else
-          echo "Cloning repo..."
-          git clone https://github.com/KyuubiRan/Magisk-Tailscaled.git tailscale
-          cd tailscale
-        fi
-        ls -la
+        echo "Cloning repo..."
+        git clone https://github.com/KyuubiRan/tailscale.git tailscale
+        ls -la tailscale
         # rm tailscale.tar.gz
         cd ..
 
@@ -78,9 +71,7 @@ jobs:
       run: |
         mkdir -p dist/arm64
         mkdir -p dist/arm
-        ls -la
         cd build/tailscale
-        ls -la
 
         # Patching etc/resolv.conf to readable dir
         sed -i 's|/etc/resolv.conf|/data/adb/tailscale/tmp/resolv.conf|g' net/dns/resolvconfpath_default.go
